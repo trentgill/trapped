@@ -1,0 +1,99 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww12860\viewh12200\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 EU2 A\
+EU3 C & D\
+\
+\
+
+\b m4l device
+\b0 :\
+clip recorder replaces 'note repeat' for rhythmic repeats\
+hit 'record' play your pattern in\
+records from 1st note\
+hit 'stop' or 'global stop'\
+now a new press will trigger the whole pattern\
+trigger / gate (w/ loop option)\
+\
+
+\b juke box
+\b0 \
+most songs include:\
+drums (kick, snare, hihats (2), toms(2), rimshot)\
+sample (w/ variable length for changing chops)\
+melody (pitch & rhythm > use vari brightness to show held notes v repeated)\
+16 step sequence\
+assignable mappings to rhythm and melody\
+\
+\
+\
+\
+SHOULD MAKE THE TIMESHIFT COMMANDS ACTUALLY CHANGE AN INDIVIDUAL METRO LOCKED TO THE MAIN GROOVE >> WOULD ALLOW THE HALF TIME COMMAND TO ONLY TRIGGER EVERY 2ND LOOP WITHOUT HAVING TO CHANGE THE TIMESCALE\
+\
+GATE LENGTH SHOULD ROTATE AROUND THE RING. ALWAYS STARTS FROM THE OFFSET MARKER > WILL MAKE THE MODE CHANGE MUCH CLEARER AS WELL. COULD REMOVE THE 'DOUBLE EDGE' THING AND INSTEAD REPLACE WITH 'LIGHT' COLOUR FROM ZERO TO START MARKER, THEN FULL BRIGHT FROM MARKER TO GATE END, THEN OFF. MARKER TRAVELS AROUND ON TOP OF THIS DISPLAY\
+\
+\
+monome controls:\
+0 controls / shifts\
+	0 edit / hold: when on, all changes are toggles; clicking a sequence event displays it's parameters\
+	1\
+	2\
+	3\
+	4\
+	5\
+	6\
+	7\
+	8	\
+	9\
+	10\
+	11\
+	12\
+	13 copy: hold and press an instrument to copy it's current sequence (or a 'chord')\
+	14 paste: (as above)\
+	15 listenback: hold while tapping instrument select to trigger the sample\
+1 note\
+2 note\
+3 note\
+4 note\
+5 instrument select\
+6 step sequence entry & display\
+7 step sequence entry & display\
+\
+sequence entry: every voice has 2 articulations for loud/soft, open/closed, high/low etc\
+can hold a note and \
+\
+
+\b note
+\b0 :\
+the note grid has a multi-modal usage:\
+\'95 sets the MIDI note that is sent when triggering in MIDI mode\
+\'95 entry point for melody / chords\
+	- mapped musically (fourths?)\
+	- can be played as a synthesizer\
+	- hold your chord and press the step \
+\'95 entry for envelope shaping\
+	- left side: delay / attack / level\
+		if only 1 press:\
+			sets volume (y) and attack time (x)\
+		if 2 presses:\
+			p1: sets onset level (y) and delay time (x)\
+			p2: sets peak level (y) and attack time (x)\
+	- right side: decay / sustain / release\
+		if only 1 press:\
+			sets sustain level (y) and release time (x) > decay is same as attack\
+		if 2 presses:\
+			p1: sets sustain level (y) and decay time (x)\
+			p2: sets release level (y) and release time (x) > release can be full vol to allow full tail of sample\
+	- need to find good generalised volume levels & preset decay / release times\
+\
+\
+
+\b INterface
+\b0 :\
+each voice has a display (shown when selected on the monome)\
+	- here you can setup the MIDI output (defaults to C3 on channels 1-16 sequentially)\
+	- use the note grid to set the base midi note that is sent (mapped musically)\
+}
