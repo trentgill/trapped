@@ -90,7 +90,11 @@ function calcMults(x,y) { // set a new mult
 	else if(x==1) trapClock1.interval = baseTime * preMul[y-1];
 	else if(x==2) trapClock2.interval = baseTime * preMul[y-1];
 	else if(x==3) trapClock3.interval = baseTime * preMul[y-1];
-		// etc.
+	else if(x==4) trapClock4.interval = baseTime * preMul[y-1];
+	else if(x==5) trapClock5.interval = baseTime * preMul[y-1];
+	else if(x==6) trapClock6.interval = baseTime * preMul[y-1];
+	else if(x==7) trapClock7.interval = baseTime * preMul[y-1];
+	
 	newPhase(x); // new clock means phase has changed
 	newRepeats(x); // new clock means repeat time has changed
 
@@ -165,39 +169,45 @@ function redrawMults() {
 	}	
 }
 
-///// TIMERS /////
-baseTime = 1000; // this is the total time for 1 revolution at the base rate (future: tempo calc)
 
+	//////////////////
+	//////////////////
+	///// TIMERS /////
+	//////////////////
+	//////////////////
+
+baseTime = 1000; // this is the total time for 1 revolution at the base rate (future: tempo calc)
 
 var trapClock0 = new Task(clock0, this);
 var trapClock1 = new Task(clock1, this);
 var trapClock2 = new Task(clock2, this);
 var trapClock3 = new Task(clock3, this);
-/*var trapClock4 = new Task(clock4, this);
+var trapClock4 = new Task(clock4, this);
 var trapClock5 = new Task(clock5, this);
 var trapClock6 = new Task(clock6, this);
-var trapClock7 = new Task(clock7, this); */
+var trapClock7 = new Task(clock7, this);
 
 trapClock0.interval = baseTime;
 trapClock1.interval = baseTime;
 trapClock2.interval = baseTime;
 trapClock3.interval = baseTime;
-/* trapClock4.interval = baseTime;
+trapClock4.interval = baseTime;
 trapClock5.interval = baseTime;
 trapClock6.interval = baseTime;
-trapClock7.interval = baseTime; */
+trapClock7.interval = baseTime;
 
 trapClock0.repeat();
 trapClock1.repeat();
 trapClock2.repeat();
 trapClock3.repeat();
-/* trapClock4.repeat();
+trapClock4.repeat();
 trapClock5.repeat();
 trapClock6.repeat();
-trapClock7.repeat(); */
+trapClock7.repeat();
+
+///// 0 /////
 
 var phase0dec = 1;
-
 function clock0 () {
 	trapPhase0.cancel(); // stop the phase counter
 	phase0dec = 1;
@@ -206,7 +216,6 @@ function clock0 () {
 }
 
 var trapPhase0 = new Task(phase0, this);
-
 function phase0 () {
 	if(phase0dec==0) { // has waited for phase to arrive so trigger repeats
 		trapRepeat0.cancel(); // reset repeater
@@ -218,42 +227,214 @@ function phase0 () {
 }
 
 var trapRepeat0 = new Task(repeat0, this);
-
 function repeat0 () {
 	if(cRepeats[0]>=aRepeats[0]) trapRepeat0.cancel(); // cancel if 
 	outlet(2,0); // retriggers inside of phase
 	cRepeats[0]++; // count repeats
 }
 
+///// 1 /////
 
+var phase1dec = 1;
 function clock1 () {
-	//
+	trapPhase1.cancel(); // stop the phase counter
+	phase1dec = 1;
+	newPhase(1); // calc phase offset time
+	trapPhase1.repeat(2); // restart the phase counter & repeat once
 }
 
+var trapPhase1 = new Task(phase1, this);
+function phase1 () {
+	if(phase1dec==0) { // has waited for phase to arrive so trigger repeats
+		trapRepeat1.cancel(); // reset repeater
+		newRepeats(1); // calc repeat ms time
+		cRepeats[1] = 1; // init repeat counter to 1 (zero had 1 extra trigger?)
+		trapRepeat1.repeat();
+	}
+	phase1dec--;
+}
+
+var trapRepeat1 = new Task(repeat1, this);
+function repeat1 () {
+	if(cRepeats[1]>=aRepeats[1]) trapRepeat1.cancel(); // cancel if 
+	outlet(2,1); // retriggers inside of phase
+	cRepeats[1]++; // count repeats
+}
+
+///// 2 /////
+
+var phase2dec = 1;
 function clock2 () {
-	//
+	trapPhase2.cancel(); // stop the phase counter
+	phase2dec = 1;
+	newPhase(2); // calc phase offset time
+	trapPhase2.repeat(2); // restart the phase counter & repeat once
 }
 
+var trapPhase2 = new Task(phase2, this);
+function phase2 () {
+	if(phase2dec==0) { // has waited for phase to arrive so trigger repeats
+		trapRepeat2.cancel(); // reset repeater
+		newRepeats(2); // calc repeat ms time
+		cRepeats[2] = 1; // init repeat counter to 1 (zero had 1 extra trigger?)
+		trapRepeat2.repeat();
+	}
+	phase2dec--;
+}
+
+var trapRepeat2 = new Task(repeat2, this);
+function repeat2 () {
+	if(cRepeats[2]>=aRepeats[2]) trapRepeat2.cancel(); // cancel if 
+	outlet(2,2); // retriggers inside of phase
+	cRepeats[2]++; // count repeats
+}
+
+///// 3 /////
+
+var phase3dec = 1;
 function clock3 () {
-	//
+	trapPhase3.cancel(); // stop the phase counter
+	phase3dec = 1;
+	newPhase(3); // calc phase offset time
+	trapPhase3.repeat(2); // restart the phase counter & repeat once
 }
-/*
+
+var trapPhase3 = new Task(phase3, this);
+function phase3 () {
+	if(phase3dec==0) { // has waited for phase to arrive so trigger repeats
+		trapRepeat3.cancel(); // reset repeater
+		newRepeats(3); // calc repeat ms time
+		cRepeats[3] = 1; // init repeat counter to 1 (zero had 1 extra trigger?)
+		trapRepeat3.repeat();
+	}
+	phase3dec--;
+}
+
+var trapRepeat3 = new Task(repeat3, this);
+function repeat3 () {
+	if(cRepeats[3]>=aRepeats[3]) trapRepeat3.cancel(); // cancel if 
+	outlet(2,3); // retriggers inside of phase
+	cRepeats[3]++; // count repeats
+}
+
+///// 4 /////
+
+var phase4dec = 1;
 function clock4 () {
-	//
+	trapPhase4.cancel(); // stop the phase counter
+	phase4dec = 1;
+	newPhase(4); // calc phase offset time
+	trapPhase4.repeat(2); // restart the phase counter & repeat once
 }
 
+var trapPhase4 = new Task(phase4, this);
+function phase4 () {
+	if(phase4dec==0) { // has waited for phase to arrive so trigger repeats
+		trapRepeat4.cancel(); // reset repeater
+		newRepeats(4); // calc repeat ms time
+		cRepeats[4] = 1; // init repeat counter to 1 (zero had 1 extra trigger?)
+		trapRepeat4.repeat();
+	}
+	phase4dec--;
+}
+
+var trapRepeat4 = new Task(repeat4, this);
+function repeat4 () {
+	if(cRepeats[4]>=aRepeats[4]) trapRepeat4.cancel(); // cancel if 
+	outlet(2,4); // retriggers inside of phase
+	cRepeats[4]++; // count repeats
+}
+
+///// 5 /////
+
+var phase5dec = 1;
 function clock5 () {
-	//
+	trapPhase5.cancel(); // stop the phase counter
+	phase5dec = 1;
+	newPhase(5); // calc phase offset time
+	trapPhase5.repeat(2); // restart the phase counter & repeat once
 }
 
+var trapPhase5 = new Task(phase5, this);
+function phase5 () {
+	if(phase5dec==0) { // has waited for phase to arrive so trigger repeats
+		trapRepeat5.cancel(); // reset repeater
+		newRepeats(5); // calc repeat ms time
+		cRepeats[5] = 1; // init repeat counter to 1 (zero had 1 extra trigger?)
+		trapRepeat5.repeat();
+	}
+	phase5dec--;
+}
+
+var trapRepeat5 = new Task(repeat5, this);
+function repeat5 () {
+	if(cRepeats[5]>=aRepeats[5]) trapRepeat5.cancel(); // cancel if 
+	outlet(2,5); // retriggers inside of phase
+	cRepeats[5]++; // count repeats
+}
+
+///// 6 /////
+
+var phase6dec = 1;
 function clock6 () {
-	//
+	trapPhase6.cancel(); // stop the phase counter
+	phase6dec = 1;
+	newPhase(6); // calc phase offset time
+	trapPhase6.repeat(2); // restart the phase counter & repeat once
 }
 
-function clock7 () {
-	//
+var trapPhase6 = new Task(phase6, this);
+function phase6 () {
+	if(phase6dec==0) { // has waited for phase to arrive so trigger repeats
+		trapRepeat6.cancel(); // reset repeater
+		newRepeats(6); // calc repeat ms time
+		cRepeats[6] = 1; // init repeat counter to 1 (zero had 1 extra trigger?)
+		trapRepeat6.repeat();
+	}
+	phase6dec--;
 }
-*/
+
+var trapRepeat6 = new Task(repeat6, this);
+function repeat6 () {
+	if(cRepeats[6]>=aRepeats[6]) trapRepeat6.cancel(); // cancel if 
+	outlet(2,6); // retriggers inside of phase
+	cRepeats[6]++; // count repeats
+}
+
+///// 7 /////
+
+var phase7dec = 1;
+function clock7 () {
+	trapPhase7.cancel(); // stop the phase counter
+	phase7dec = 1;
+	newPhase(7); // calc phase offset time
+	trapPhase7.repeat(2); // restart the phase counter & repeat once
+}
+
+var trapPhase7 = new Task(phase7, this);
+function phase7 () {
+	if(phase7dec==0) { // has waited for phase to arrive so trigger repeats
+		trapRepeat7.cancel(); // reset repeater
+		newRepeats(7); // calc repeat ms time
+		cRepeats[7] = 1; // init repeat counter to 1 (zero had 1 extra trigger?)
+		trapRepeat7.repeat();
+	}
+	phase7dec--;
+}
+
+var trapRepeat7 = new Task(repeat7, this);
+function repeat7 () {
+	if(cRepeats[7]>=aRepeats[7]) trapRepeat7.cancel(); // cancel if 
+	outlet(2,7); // retriggers inside of phase
+	cRepeats[7]++; // count repeats
+}
+
+	//////////////////
+	//////////////////
+	//// ARC INPUT ///
+	//////////////////
+	//////////////////
+
 
 function arcMoved(i,d) { // arc movement: index, delta
 
@@ -330,7 +511,10 @@ function newPhase(i) {
 	else if(i==1) trapPhase1.interval = Math.min(trapClock1.interval-10, Math.max(trapClock1.interval * aState[1][0], 10));
 	else if(i==2) trapPhase2.interval = Math.min(trapClock2.interval-10, Math.max(trapClock2.interval * aState[2][0], 10));
 	else if(i==3) trapPhase3.interval = Math.min(trapClock3.interval-10, Math.max(trapClock3.interval * aState[3][0], 10));
-		// etc.
+	else if(i==4) trapPhase4.interval = Math.min(trapClock4.interval-10, Math.max(trapClock4.interval * aState[4][0], 10));
+	else if(i==5) trapPhase5.interval = Math.min(trapClock5.interval-10, Math.max(trapClock5.interval * aState[5][0], 10));
+	else if(i==6) trapPhase6.interval = Math.min(trapClock6.interval-10, Math.max(trapClock6.interval * aState[6][0], 10));
+	else if(i==7) trapPhase7.interval = Math.min(trapClock7.interval-10, Math.max(trapClock7.interval * aState[7][0], 10));
 }
 
 function newRepeats(i) {
@@ -339,7 +523,10 @@ function newRepeats(i) {
 	else if(i==1) trapRepeat1.interval = Math.max(trapClock1.interval * (Math.pow(2,aState[1][1]*6)/64), 10);
 	else if(i==2) trapRepeat2.interval = Math.max(trapClock2.interval * (Math.pow(2,aState[2][1]*6)/64), 10);
 	else if(i==3) trapRepeat3.interval = Math.max(trapClock3.interval * (Math.pow(2,aState[3][1]*6)/64), 10);
-		// etc.
+	else if(i==1) trapRepeat4.interval = Math.max(trapClock4.interval * (Math.pow(2,aState[4][1]*6)/64), 10);
+	else if(i==2) trapRepeat5.interval = Math.max(trapClock5.interval * (Math.pow(2,aState[5][1]*6)/64), 10);
+	else if(i==3) trapRepeat6.interval = Math.max(trapClock6.interval * (Math.pow(2,aState[6][1]*6)/64), 10);
+	else if(i==1) trapRepeat7.interval = Math.max(trapClock7.interval * (Math.pow(2,aState[7][1]*6)/64), 10);
 }
 
 
